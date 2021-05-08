@@ -1,0 +1,3 @@
+apps:
+  - script: ./bootstrap.js
+    name: programming-duck
