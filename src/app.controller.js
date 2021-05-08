@@ -4,6 +4,7 @@ const { Telegraf } = require('telegraf');
 
 const AppService = require('./app.service');
 const ConfigManager = require('./utils/config-manager');
+const Triggers = require('./models/triggers');
 
 function AppController() {
   this.config = ConfigManager.get('telegram');
@@ -13,6 +14,7 @@ function AppController() {
 
 AppController.prototype.listen = function () {
   this.bot.start(context => this.service.start(context));
+  this.bot.hears(Triggers.SUCCESS, context => this.service.success(context));
   this.bot.launch();
 };
 
